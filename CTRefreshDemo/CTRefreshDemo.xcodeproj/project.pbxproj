@@ -15,6 +15,8 @@
 		69D40DCB1F27277100C145AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69D40DC91F27277100C145AA /* LaunchScreen.storyboard */; };
 		69D40DD61F27277100C145AA /* CTRefreshDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D40DD51F27277100C145AA /* CTRefreshDemoTests.m */; };
 		69D40DE11F27277100C145AA /* CTRefreshDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D40DE01F27277100C145AA /* CTRefreshDemoUITests.m */; };
+		69D40DF11F27285700C145AA /* CTRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D40DF01F27285700C145AA /* CTRefreshHeaderView.m */; };
+		69D40DF41F27286A00C145AA /* CTRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D40DF31F27286A00C145AA /* CTRefreshFooterView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		69D40DDC1F27277100C145AA /* CTRefreshDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CTRefreshDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D40DE01F27277100C145AA /* CTRefreshDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTRefreshDemoUITests.m; sourceTree = "<group>"; };
 		69D40DE21F27277100C145AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69D40DEF1F27285700C145AA /* CTRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshHeaderView.h; sourceTree = "<group>"; };
+		69D40DF01F27285700C145AA /* CTRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRefreshHeaderView.m; sourceTree = "<group>"; };
+		69D40DF21F27286A00C145AA /* CTRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshFooterView.h; sourceTree = "<group>"; };
+		69D40DF31F27286A00C145AA /* CTRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRefreshFooterView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 		69D40DAF1F27277100C145AA = {
 			isa = PBXGroup;
 			children = (
+				69D40DEE1F27282500C145AA /* CTRefresh */,
 				69D40DBA1F27277100C145AA /* CTRefreshDemo */,
 				69D40DD41F27277100C145AA /* CTRefreshDemoTests */,
 				69D40DDF1F27277100C145AA /* CTRefreshDemoUITests */,
@@ -138,6 +145,17 @@
 				69D40DE21F27277100C145AA /* Info.plist */,
 			);
 			path = CTRefreshDemoUITests;
+			sourceTree = "<group>";
+		};
+		69D40DEE1F27282500C145AA /* CTRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				69D40DEF1F27285700C145AA /* CTRefreshHeaderView.h */,
+				69D40DF01F27285700C145AA /* CTRefreshHeaderView.m */,
+				69D40DF21F27286A00C145AA /* CTRefreshFooterView.h */,
+				69D40DF31F27286A00C145AA /* CTRefreshFooterView.m */,
+			);
+			path = CTRefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +296,8 @@
 			files = (
 				69D40DC31F27277100C145AA /* ViewController.m in Sources */,
 				69D40DC01F27277100C145AA /* AppDelegate.m in Sources */,
+				69D40DF41F27286A00C145AA /* CTRefreshFooterView.m in Sources */,
+				69D40DF11F27285700C145AA /* CTRefreshHeaderView.m in Sources */,
 				69D40DBD1F27277100C145AA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
