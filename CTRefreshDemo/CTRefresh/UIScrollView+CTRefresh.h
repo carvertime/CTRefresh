@@ -10,6 +10,9 @@
 
 @interface UIScrollView (CTRefresh)
 
-- (void)ct_addHeaderRefreshBlock:(void(^)(UIView *headerView))block;
+@property (nonatomic, strong) UIView *ct_refreshHeader;
+
+- (void)ct_addHeaderRefresh:(Class)headerClass handle:(void(^)(UIView *headerView))handle;
+- (void)ct_endHeaderRefresh;
 
 @end

@@ -10,12 +10,21 @@
 
 @implementation CTRefreshHeaderView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        self.frame = CGRectMake(0, -50, [UIScreen mainScreen].bounds.size.width, 50);
+    }
+    return self;
 }
-*/
+
+- (void)refreshHeaderStatus:(CTHeaderRefreshStatus)status{
+    if (status == CTHeaderRefreshStatusNormal) {
+        self.backgroundColor = [UIColor greenColor];
+    } else if (status == CTHeaderRefreshStatusShouldRefresh) {
+        self.backgroundColor = [UIColor yellowColor];
+    } else if (status == CTHeaderRefreshStatusRefreshing) {
+        self.backgroundColor = [UIColor purpleColor];
+    }
+}
 
 @end

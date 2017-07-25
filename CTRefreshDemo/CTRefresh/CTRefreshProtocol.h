@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CTRefreshDefine.h"
 
-@protocol CTRefreshProtocol <NSObject>
+@protocol CTRefreshHeaderProtocol <NSObject>
 
-- (UIScrollView *)observerScrollView;
+@optional;
 - (UIView *)refreshHeaderView;
+- (CGFloat)refreshHeaderHeight;
+- (void)refreshHeaderStatus:(CTHeaderRefreshStatus)status;
 
 @end
 

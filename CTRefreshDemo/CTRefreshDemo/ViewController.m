@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "CTRefreshProtocol.h"
+#import "UIScrollView+CTRefresh.h"
+#import "CTRefreshHeaderView.h"
 
 @interface ViewController ()
 
@@ -26,6 +28,12 @@
     [super viewWillAppear:animated];
     self.tableView.frame = self.view.bounds;
     [self.view addSubview:self.tableView];
+    
+    [self.tableView ct_addHeaderRefresh:[CTRefreshHeaderView class] handle:^(UIView *headerView) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.tableView ct_endHeaderRefresh];
+        });
+    }];
 }
 
 

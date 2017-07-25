@@ -64,6 +64,7 @@
 		69D40DF81F272B2A00C145AA /* CTRefreshProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshProtocol.h; sourceTree = "<group>"; };
 		69D40DFB1F272EC600C145AA /* UIScrollView+CTRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+CTRefresh.h"; sourceTree = "<group>"; };
 		69D40DFC1F272EC600C145AA /* UIScrollView+CTRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+CTRefresh.m"; sourceTree = "<group>"; };
+		69D40DFE1F27404000C145AA /* CTRefreshDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshDefine.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +167,7 @@
 				69D40DF61F272A4E00C145AA /* CTScrollViewObserver.m */,
 				69D40DFB1F272EC600C145AA /* UIScrollView+CTRefresh.h */,
 				69D40DFC1F272EC600C145AA /* UIScrollView+CTRefresh.m */,
+				69D40DFE1F27404000C145AA /* CTRefreshDefine.h */,
 			);
 			path = CTRefresh;
 			sourceTree = "<group>";

@@ -6,8 +6,13 @@
 //  Copyright © 2017年 Demo. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface CTScrollViewObserver : NSObject
+
+@property (nonatomic, copy) void(^headerRefreshBlock)(UIView *headerView);
+
+- (id)initWithScrollView:(UIScrollView *)scrollView;
+- (void)endHeaderRefresh;
 
 @end
