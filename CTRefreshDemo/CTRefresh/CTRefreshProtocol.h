@@ -15,6 +15,7 @@
 - (UIView *)refreshHeaderView;
 - (CGFloat)refreshHeaderHeight;
 - (void)refreshHeaderStatus:(CTHeaderRefreshStatus)status;
+- (void)refreshHeaderScrollOffsetY:(CGFloat)offsetY;
 
 @end
 

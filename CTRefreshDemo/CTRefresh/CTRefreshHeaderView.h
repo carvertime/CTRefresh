@@ -10,7 +10,7 @@
 #import "CTRefreshProtocol.h"
 #import "CTRefreshDefine.h"
 
-@interface CTRefreshHeaderView : UIView
+@interface CTRefreshHeaderView : UIView<CTRefreshHeaderProtocol>
 
 
 @end
