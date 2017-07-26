@@ -15,4 +15,12 @@ typedef NS_ENUM(NSInteger, CTHeaderRefreshStatus) {
     CTHeaderRefreshStatusRefreshing,
 };
 
+typedef NS_ENUM(NSInteger, CTFooterRefreshStatus) {
+    /** footer正常状态 */
+    CTFooterRefreshStatusNormal,
+    /** footer松开可刷新状态 */
+    CTFooterRefreshStatusShouldRefresh,
+    /** footer刷新中 */
+    CTFooterRefreshStatusRefreshing,
+};
 

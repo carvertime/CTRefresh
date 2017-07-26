@@ -12,10 +12,18 @@
 @protocol CTRefreshHeaderProtocol <NSObject>
 
 @optional;
-- (UIView *)refreshHeaderView;
+
 - (CGFloat)refreshHeaderHeight;
 - (void)refreshHeaderStatus:(CTHeaderRefreshStatus)status;
 - (void)refreshHeaderScrollOffsetY:(CGFloat)offsetY;
+
+@end
+
+@protocol CTRefreshFooterProtocol <NSObject>
+
+- (CGFloat)refreshFooterHeight;
+- (void)refreshFooterStatus:(CTHeaderRefreshStatus)status;
+- (void)refreshFooterScrollOffsetY:(CGFloat)offsetY;
 
 @end
 

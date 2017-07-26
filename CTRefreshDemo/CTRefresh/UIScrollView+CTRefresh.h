@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIView *ct_refreshHeader;
 
 - (void)ct_addHeaderRefresh:(Class)headerClass handle:(void(^)(UIView *headerView))handle;
+- (void)ct_beginRefresh;
 - (void)ct_endHeaderRefresh;
 
 @end

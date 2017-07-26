@@ -68,9 +68,7 @@
 }
 
 - (void)refreshHeaderScrollOffsetY:(CGFloat)offsetY{
-    [UIView animateWithDuration:0.25 animations:^{
-        self.alpha = offsetY / self.frame.size.height;
-    }];
+    self.alpha = offsetY / self.frame.size.height;
 }
 
 - (UILabel *)titleLb{

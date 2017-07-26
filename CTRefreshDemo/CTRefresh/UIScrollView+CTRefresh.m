@@ -25,6 +25,11 @@ static const char CTRefreshHeaderKey;
     [self addSubview:self.ct_refreshHeader];
 }
 
+- (void)ct_beginRefresh{
+    CTScrollViewObserver *observer = objc_getAssociatedObject(self, &CTObserverKey);
+    [observer beginRefresh];
+}
+
 - (void)ct_endHeaderRefresh{
     CTScrollViewObserver *observer = objc_getAssociatedObject(self, &CTObserverKey);
     [observer endHeaderRefresh];

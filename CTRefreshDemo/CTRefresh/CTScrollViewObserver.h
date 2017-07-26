@@ -13,6 +13,7 @@
 @property (nonatomic, copy) void(^headerRefreshBlock)(UIView *headerView);
 
 - (id)initWithScrollView:(UIScrollView *)scrollView;
+- (void)beginRefresh;
 - (void)endHeaderRefresh;
 
 @end
