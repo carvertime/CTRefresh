@@ -22,7 +22,7 @@
 @protocol CTRefreshFooterProtocol <NSObject>
 
 - (CGFloat)refreshFooterHeight;
-- (void)refreshFooterStatus:(CTHeaderRefreshStatus)status;
+- (void)refreshFooterStatus:(CTFooterRefreshStatus)status;
 - (void)refreshFooterScrollOffsetY:(CGFloat)offsetY;
 
 @end

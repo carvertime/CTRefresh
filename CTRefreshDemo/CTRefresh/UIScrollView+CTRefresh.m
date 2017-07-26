@@ -12,17 +12,25 @@
 
 static const char CTObserverKey;
 static const char CTRefreshHeaderKey;
+static const char CTRefreshFooterKey;
 
 
 @implementation UIScrollView (CTRefresh)
 
+
+#pragma mark - header refresh
 - (void)ct_addHeaderRefresh:(Class)headerClass handle:(void (^)(UIView *))handle{
-    CTScrollViewObserver *observer = [[CTScrollViewObserver alloc] initWithScrollView:self];
-    objc_setAssociatedObject(self, &CTObserverKey, observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    CTScrollViewObserver *observer = objc_getAssociatedObject(self, &CTObserverKey);
+    if (!observer) {
+        observer = [[CTScrollViewObserver alloc] initWithScrollView:self];
+        objc_setAssociatedObject(self, &CTObserverKey, observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
     observer.headerRefreshBlock = handle;
     id headerView = [[headerClass alloc] initWithFrame:CGRectZero];
     self.ct_refreshHeader = headerView;
     [self addSubview:self.ct_refreshHeader];
+    
 }
 
 - (void)ct_beginRefresh{
@@ -44,5 +52,31 @@ static const char CTRefreshHeaderKey;
 }
 
 
+#pragma mark - footer refresh
+- (void)ct_addFooterRefresh:(Class)footerClass handle:(void(^)(UIView *footerView))handle{
+    CTScrollViewObserver *observer = objc_getAssociatedObject(self, &CTObserverKey);
+    if (!observer) {
+        observer = [[CTScrollViewObserver alloc] initWithScrollView:self];
+        objc_setAssociatedObject(self, &CTObserverKey, observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    observer.footerRefreshBlock = handle;
+    id footerView = [[footerClass alloc] initWithFrame:CGRectZero];
+    self.ct_refreshFooter = footerView;
+    [self addSubview:self.ct_refreshFooter];
+}
+
+- (void)ct_endFooterRefresh{
+    CTScrollViewObserver *observer = objc_getAssociatedObject(self, &CTObserverKey);
+    [observer endFooterRefresh];
+}
+
+
+- (UIView *)ct_refreshFooter{
+    return objc_getAssociatedObject(self, &CTRefreshFooterKey);
+}
+
+- (void)setCt_refreshFooter:(UIView *)ct_refreshFooter{
+    objc_setAssociatedObject(self, &CTRefreshFooterKey, ct_refreshFooter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 @end

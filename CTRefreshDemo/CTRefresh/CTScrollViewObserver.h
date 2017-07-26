@@ -11,9 +11,12 @@
 @interface CTScrollViewObserver : NSObject
 
 @property (nonatomic, copy) void(^headerRefreshBlock)(UIView *headerView);
+@property (nonatomic, copy) void(^footerRefreshBlock)(UIView *footerView);
 
 - (id)initWithScrollView:(UIScrollView *)scrollView;
 - (void)beginRefresh;
 - (void)endHeaderRefresh;
+
+- (void)endFooterRefresh;
 
 @end

@@ -10,12 +10,28 @@
 
 @implementation CTRefreshFooterView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        self.frame = CGRectMake(0, 50, [UIScreen mainScreen].bounds.size.width, 50);
+        self.backgroundColor = [UIColor blueColor];
+    }
+    return self;
 }
-*/
+
+- (void)refreshFooterStatus:(CTFooterRefreshStatus)status{
+    switch (status) {
+        case CTFooterRefreshStatusNormal:
+            self.backgroundColor = [UIColor blueColor];
+            break;
+        case CTFooterRefreshStatusShouldRefresh:
+            self.backgroundColor = [UIColor purpleColor];
+            break;
+        case CTFooterRefreshStatusRefreshing:
+            self.backgroundColor = [UIColor redColor];
+            break;
+        default:
+            break;
+    }
+}
 
 @end

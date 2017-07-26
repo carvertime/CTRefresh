@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CTRefreshProtocol.h"
 
-@interface CTRefreshFooterView : UIView
+@interface CTRefreshFooterView : UIView<CTRefreshFooterProtocol>
 
 @end

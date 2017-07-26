@@ -10,10 +10,16 @@
 
 @interface UIScrollView (CTRefresh)
 
-@property (nonatomic, strong) UIView *ct_refreshHeader;
 
+
+@property (nonatomic, strong) UIView *ct_refreshHeader;
 - (void)ct_addHeaderRefresh:(Class)headerClass handle:(void(^)(UIView *headerView))handle;
 - (void)ct_beginRefresh;
 - (void)ct_endHeaderRefresh;
+
+
+@property (nonatomic, strong) UIView *ct_refreshFooter;
+- (void)ct_addFooterRefresh:(Class)footerClass handle:(void(^)(UIView *footerView))handle;
+- (void)ct_endFooterRefresh;
 
 @end

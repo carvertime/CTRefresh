@@ -18,12 +18,17 @@ typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
     CTScrollViewPanStateLoosen,
 };
 
+
 @interface CTScrollViewObserver ()
 
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, assign) NSInteger panState;
+
 @property (nonatomic, assign) CGFloat originInsetTop;
 @property (nonatomic, assign) CTHeaderRefreshStatus headerRefreshState;
+
+@property (nonatomic, assign) CGFloat originInsetBottom;
+@property (nonatomic, assign) CTFooterRefreshStatus footerRefreshState;
 
 @end
 
@@ -33,6 +38,7 @@ typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
     if (self = [super init]) {
         _scrollView = scrollView;
         _originInsetTop = scrollView.contentInset.top;
+        _originInsetBottom = scrollView.contentInset.bottom;
         [self observerScrollView:scrollView];
     }
     return self;
@@ -41,7 +47,8 @@ typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
 - (void)observerScrollView:(UIScrollView *)scrollView{
     
     [scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-    [self.scrollView.panGestureRecognizer addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    [scrollView.panGestureRecognizer addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    [scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
 }
 
@@ -53,8 +60,29 @@ typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
     } else if ([keyPath isEqualToString:@"state"]) {
         self.panState = [change[@"new"] integerValue];
         offsetY = self.scrollView.contentOffset.y;
+    } else if ([keyPath isEqualToString:@"contentSize"]) {
+        NSLog(@"contentSize = %@",change[@"new"]);
+        if (self.scrollView.contentSize.height == 0) {
+            self.scrollView.ct_refreshFooter.hidden = YES;
+        } else {
+            self.scrollView.ct_refreshFooter.hidden = NO;
+            id<CTRefreshFooterProtocol>refreshFooter = (id<CTRefreshFooterProtocol>)self.scrollView.ct_refreshHeader;
+            CGFloat height = self.scrollView.ct_refreshFooter.frame.size.height;
+            if ([self.scrollView.ct_refreshFooter respondsToSelector:@selector(refreshFooterHeight)]) {
+                height = [refreshFooter refreshFooterHeight];
+            }
+            self.scrollView.ct_refreshFooter.frame = CGRectMake(0, self.scrollView.contentSize.height, self.scrollView.frame.size.width, height);
+        }
     }
-     [self changeHeaderViewStatusWithOffsetY:offsetY];
+    if (offsetY <= -self.originInsetTop) {
+        if (self.scrollView.ct_refreshHeader && self.footerRefreshState != CTFooterRefreshStatusRefreshing) {
+            [self changeHeaderViewStatusWithOffsetY:offsetY];
+        }
+    } else {
+        if (self.scrollView.ct_refreshFooter && self.headerRefreshState != CTHeaderRefreshStatusRefreshing) {
+          [self changeFooterViewStatusWithOffsetY:offsetY];
+        }
+    }
     
 }
 
@@ -90,6 +118,40 @@ typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
     
 }
 
+- (void)changeFooterViewStatusWithOffsetY:(CGFloat)offsetY{
+    
+    id<CTRefreshFooterProtocol>refreshFooter = (id<CTRefreshFooterProtocol>)self.scrollView.ct_refreshFooter;
+    CGFloat height = self.scrollView.ct_refreshFooter.frame.size.height;
+    if ([self.scrollView.ct_refreshFooter respondsToSelector:@selector(refreshFooterHeight)]) {
+        height = [refreshFooter refreshFooterHeight];
+    }
+    
+    NSLog(@"offset ======= %lf",offsetY);
+    if (offsetY-height > self.scrollView.contentSize.height - self.scrollView.frame.size.height) {
+        NSLog(@"--------------到了临界值");
+        if (self.panState == CTScrollViewPanStatePulling && self.footerRefreshState != CTFooterRefreshStatusShouldRefresh) {
+            self.footerRefreshState = CTFooterRefreshStatusShouldRefresh;
+            [refreshFooter refreshFooterStatus:CTFooterRefreshStatusShouldRefresh];
+        } else if (self.panState == CTScrollViewPanStateLoosen && self.footerRefreshState != CTFooterRefreshStatusRefreshing) {
+            NSLog(@"footerRefreshState ==== %zd",self.footerRefreshState);
+            self.footerRefreshState = CTFooterRefreshStatusRefreshing;
+            [refreshFooter refreshFooterStatus:CTFooterRefreshStatusRefreshing];
+            [UIView animateWithDuration:0.25 animations:^{
+                [self.scrollView setContentInset:UIEdgeInsetsMake(self.originInsetTop, 0, height+self.originInsetBottom, 0)];
+            }];
+            if (self.footerRefreshBlock) {
+                self.footerRefreshBlock(self.scrollView.ct_refreshFooter);
+            }
+        }
+    } else {
+        if (self.footerRefreshState != CTFooterRefreshStatusNormal) {
+            self.footerRefreshState = CTFooterRefreshStatusNormal;
+            [refreshFooter refreshFooterStatus:CTFooterRefreshStatusNormal];
+        }
+    }
+    
+}
+
 - (void)beginRefresh{
     
     id<CTRefreshHeaderProtocol>refreshHeader = (id<CTRefreshHeaderProtocol>)self.scrollView.ct_refreshHeader;
@@ -112,7 +174,18 @@ typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
 - (void)endHeaderRefresh{
     self.panState = CTScrollViewPanStateLoosen;
     [UIView animateWithDuration:0.25 animations:^{
-        [self.scrollView setContentInset:UIEdgeInsetsMake(self.originInsetTop, 0, 0, 0)];
+        [self.scrollView setContentInset:UIEdgeInsetsMake(self.originInsetTop, 0, self.originInsetBottom, 0)];
+    } completion:^(BOOL finished) {
+        self.headerRefreshState = CTHeaderRefreshStatusNormal;
+    }];
+}
+
+- (void)endFooterRefresh{
+    self.panState = CTScrollViewPanStateLoosen;
+    [UIView animateWithDuration:0.25 animations:^{
+        [self.scrollView setContentInset:UIEdgeInsetsMake(self.originInsetTop, 0, self.originInsetBottom, 0)];
+    } completion:^(BOOL finished) {
+        self.footerRefreshState = CTFooterRefreshStatusNormal;
     }];
 }
 
