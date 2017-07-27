@@ -74,6 +74,8 @@ typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
             self.scrollView.ct_refreshFooter.frame = CGRectMake(0, self.scrollView.contentSize.height, self.scrollView.frame.size.width, height);
         }
     }
+    [self changeHeaderViewStatusWithOffsetY:offsetY];
+
     if (offsetY <= -self.originInsetTop) {
         if (self.scrollView.ct_refreshHeader && self.footerRefreshState != CTFooterRefreshStatusRefreshing) {
             [self changeHeaderViewStatusWithOffsetY:offsetY];
@@ -94,8 +96,8 @@ typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
         height = [refreshHeader refreshHeaderHeight];
     }
     
-    [refreshHeader refreshHeaderScrollOffsetY:fabs(offsetY)];
     if (fabs(offsetY) >= height+self.originInsetTop) {
+        [refreshHeader refreshHeaderScrollOffsetY:height+self.originInsetTop];
         if (self.panState == CTScrollViewPanStatePulling && self.headerRefreshState != CTHeaderRefreshStatusShouldRefresh) {
             self.headerRefreshState = CTHeaderRefreshStatusShouldRefresh;
             [refreshHeader refreshHeaderStatus:CTHeaderRefreshStatusShouldRefresh];
@@ -110,7 +112,8 @@ typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
             }
         }
     } else {
-        if (self.headerRefreshState != CTHeaderRefreshStatusNormal) {
+        [refreshHeader refreshHeaderScrollOffsetY:fabs(offsetY)];
+        if (self.panState == CTScrollViewPanStatePulling && self.headerRefreshState != CTHeaderRefreshStatusRefreshing) {
             self.headerRefreshState = CTHeaderRefreshStatusNormal;
             [refreshHeader refreshHeaderStatus:CTHeaderRefreshStatusNormal];
         }
