@@ -6,6 +6,17 @@
 //  Copyright © 2017年 Demo. All rights reserved.
 //
 
+typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
+    /** 无手势状态 */
+    CTScrollViewPanStateNormal,
+    /** 手势开始 */
+    CTScrollViewPanStateBegin,
+    /** 拉拽中 */
+    CTScrollViewPanStatePulling,
+    /** 手势松开状态 */
+    CTScrollViewPanStateLoosen,
+};
+
 typedef NS_ENUM(NSInteger, CTHeaderRefreshStatus) {
     /** header正常状态 */
     CTHeaderRefreshStatusNormal,
@@ -13,6 +24,10 @@ typedef NS_ENUM(NSInteger, CTHeaderRefreshStatus) {
     CTHeaderRefreshStatusShouldRefresh,
     /** header刷新中 */
     CTHeaderRefreshStatusRefreshing,
+    /** header刷新结果反馈 */
+    CTHeaderRefreshStatusRefreshResultFeedback,
+    /** header结束刷新中*/
+    CTHeaderRefreshStatusRefreshEnding,
 };
 
 typedef NS_ENUM(NSInteger, CTFooterRefreshStatus) {
@@ -22,5 +37,9 @@ typedef NS_ENUM(NSInteger, CTFooterRefreshStatus) {
     CTFooterRefreshStatusShouldRefresh,
     /** footer刷新中 */
     CTFooterRefreshStatusRefreshing,
+    /** footer刷新成功 */
+    CTFooterRefreshStatusRefreshSuccess,
+    /** footer结束刷新中*/
+    CTFooterRefreshStatusRefreshEnding,
 };
 

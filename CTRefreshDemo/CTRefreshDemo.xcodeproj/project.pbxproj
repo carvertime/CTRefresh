@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		697ED9771F298C3E0089ADE7 /* CTRefreshLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 697ED9761F298C3E0089ADE7 /* CTRefreshLogic.m */; };
 		69D40DBD1F27277100C145AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D40DBC1F27277100C145AA /* main.m */; };
 		69D40DC01F27277100C145AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D40DBF1F27277100C145AA /* AppDelegate.m */; };
 		69D40DC31F27277100C145AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D40DC21F27277100C145AA /* ViewController.m */; };
@@ -39,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		697ED9751F298C3E0089ADE7 /* CTRefreshLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshLogic.h; sourceTree = "<group>"; };
+		697ED9761F298C3E0089ADE7 /* CTRefreshLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRefreshLogic.m; sourceTree = "<group>"; };
+		697ED9991F29EC6C0089ADE7 /* CTRefreshLogicProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshLogicProtocol.h; sourceTree = "<group>"; };
 		69D40DB81F27277100C145AA /* CTRefreshDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CTRefreshDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D40DBC1F27277100C145AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		69D40DBE1F27277100C145AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -159,10 +163,13 @@
 			isa = PBXGroup;
 			children = (
 				69D40DF81F272B2A00C145AA /* CTRefreshProtocol.h */,
+				697ED9991F29EC6C0089ADE7 /* CTRefreshLogicProtocol.h */,
 				69D40DEF1F27285700C145AA /* CTRefreshHeaderView.h */,
 				69D40DF01F27285700C145AA /* CTRefreshHeaderView.m */,
 				69D40DF21F27286A00C145AA /* CTRefreshFooterView.h */,
 				69D40DF31F27286A00C145AA /* CTRefreshFooterView.m */,
+				697ED9751F298C3E0089ADE7 /* CTRefreshLogic.h */,
+				697ED9761F298C3E0089ADE7 /* CTRefreshLogic.m */,
 				69D40DF51F272A4E00C145AA /* CTScrollViewObserver.h */,
 				69D40DF61F272A4E00C145AA /* CTScrollViewObserver.m */,
 				69D40DFB1F272EC600C145AA /* UIScrollView+CTRefresh.h */,
@@ -315,6 +322,7 @@
 				69D40DF71F272A4E00C145AA /* CTScrollViewObserver.m in Sources */,
 				69D40DBD1F27277100C145AA /* main.m in Sources */,
 				69D40DFD1F272EC600C145AA /* UIScrollView+CTRefresh.m in Sources */,
+				697ED9771F298C3E0089ADE7 /* CTRefreshLogic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +560,7 @@
 				69D40DE71F27277100C145AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		69D40DE81F27277100C145AA /* Build configuration list for PBXNativeTarget "CTRefreshDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -560,6 +569,7 @@
 				69D40DEA1F27277100C145AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		69D40DEB1F27277100C145AA /* Build configuration list for PBXNativeTarget "CTRefreshDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -568,6 +578,7 @@
 				69D40DED1F27277100C145AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

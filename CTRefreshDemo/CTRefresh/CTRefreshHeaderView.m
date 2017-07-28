@@ -59,7 +59,16 @@
         self.titleLb.text = @"刷新中...";
         [self.indicatorView startAnimating];
         self.iconImageView.hidden = YES;
-        
+    } else if (status == CTHeaderRefreshStatusRefreshResultFeedback) {
+        self.backgroundColor = [UIColor grayColor];
+        self.titleLb.text = @"刷新成功获取了数据";
+        [self.indicatorView stopAnimating];
+        self.iconImageView.hidden = YES;
+    } else if (status == CTHeaderRefreshStatusRefreshEnding) {
+        self.backgroundColor = [UIColor blueColor];
+        self.titleLb.text = @"结束刷新";
+        [self.indicatorView stopAnimating];
+        self.iconImageView.hidden = YES;
     }
 }
 
