@@ -37,7 +37,6 @@
     self.indicatorView.frame = self.iconImageView.frame;
 }
 
-
 - (void)refreshHeaderStatus:(CTHeaderRefreshStatus)status{
     if (status == CTHeaderRefreshStatusNormal) {
         self.titleLb.text = @"下拉可刷新";

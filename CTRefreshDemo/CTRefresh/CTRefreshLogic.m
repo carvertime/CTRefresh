@@ -21,13 +21,6 @@
 
 @implementation CTRefreshLogic
 
-- (id)initWithInsetTop:(CGFloat)top insetBottom:(CGFloat)bottom{
-    if (self = [super init]) {
-        _originInsetTop = top;
-        _panState = CTScrollViewPanStateNormal;
-    }
-    return self;
-}
 
 - (BOOL)headerViewShouldResponse{
     if (self.headerRefreshState == CTHeaderRefreshStatusRefreshing || self.headerRefreshState == CTHeaderRefreshStatusRefreshResultFeedback || self.headerRefreshState == CTHeaderRefreshStatusRefreshEnding) {

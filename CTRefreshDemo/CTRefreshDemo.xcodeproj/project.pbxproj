@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		697ED9771F298C3E0089ADE7 /* CTRefreshLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 697ED9761F298C3E0089ADE7 /* CTRefreshLogic.m */; };
+		699B794F1F2B31AB00616E7E /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699B794E1F2B31AB00616E7E /* TableViewController.m */; };
 		69D40DBD1F27277100C145AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D40DBC1F27277100C145AA /* main.m */; };
 		69D40DC01F27277100C145AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D40DBF1F27277100C145AA /* AppDelegate.m */; };
 		69D40DC31F27277100C145AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D40DC21F27277100C145AA /* ViewController.m */; };
@@ -44,6 +45,8 @@
 		697ED9761F298C3E0089ADE7 /* CTRefreshLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRefreshLogic.m; sourceTree = "<group>"; };
 		697ED9991F29EC6C0089ADE7 /* CTRefreshLogicProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshLogicProtocol.h; sourceTree = "<group>"; };
 		699B794A1F2B2F5C00616E7E /* CTRefreshKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshKit.h; sourceTree = "<group>"; };
+		699B794D1F2B31AB00616E7E /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		699B794E1F2B31AB00616E7E /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		69D40DB81F27277100C145AA /* CTRefreshDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CTRefreshDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D40DBC1F27277100C145AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		69D40DBE1F27277100C145AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				69D40DBF1F27277100C145AA /* AppDelegate.m */,
 				69D40DC11F27277100C145AA /* ViewController.h */,
 				69D40DC21F27277100C145AA /* ViewController.m */,
+				699B794D1F2B31AB00616E7E /* TableViewController.h */,
+				699B794E1F2B31AB00616E7E /* TableViewController.m */,
 				69D40DC41F27277100C145AA /* Main.storyboard */,
 				69D40DC71F27277100C145AA /* Assets.xcassets */,
 				69D40DC91F27277100C145AA /* LaunchScreen.storyboard */,
@@ -321,6 +326,7 @@
 				69D40DC01F27277100C145AA /* AppDelegate.m in Sources */,
 				69D40DF41F27286A00C145AA /* CTRefreshFooterView.m in Sources */,
 				69D40DF11F27285700C145AA /* CTRefreshHeaderView.m in Sources */,
+				699B794F1F2B31AB00616E7E /* TableViewController.m in Sources */,
 				69D40DF71F272A4E00C145AA /* CTScrollViewObserver.m in Sources */,
 				69D40DBD1F27277100C145AA /* main.m in Sources */,
 				69D40DFD1F272EC600C145AA /* UIScrollView+CTRefresh.m in Sources */,

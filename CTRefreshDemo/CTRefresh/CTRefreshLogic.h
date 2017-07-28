@@ -31,6 +31,5 @@
 
 @property (nonatomic, assign) CGFloat scrollViewHeight;
 
-- (id)initWithInsetTop:(CGFloat)top insetBottom:(CGFloat)bottom;
 
 @end
