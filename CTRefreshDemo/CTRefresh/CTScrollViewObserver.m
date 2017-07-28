@@ -44,11 +44,14 @@
 
     if ([keyPath isEqualToString:@"contentOffset"]) {
         [self changeHeaderStatusWithOffsetY:[change[@"new"] CGPointValue].y];
+        [self changeFooterStatusWithOffsetY:[change[@"new"] CGPointValue].y];
     } else if ([keyPath isEqualToString:@"state"]) {
         self.logic.panState = [change[@"new"] integerValue];
         [self changeHeaderStatusWithOffsetY:self.logic.newOffsetY];
+        [self changeFooterStatusWithOffsetY:self.logic.newOffsetY];
     } else if ([keyPath isEqualToString:@"contentSize"]) {
         NSLog(@"contentSize = %@",change[@"new"]);
+        [self changeFooterStatusWithOffsetY:self.logic.newOffsetY];
     }
 
 }
@@ -72,6 +75,10 @@
             }];
         }
     }
+}
+
+- (void)changeFooterStatusWithOffsetY:(CGFloat)offsetY{
+    
 }
 
 - (void)beginRefresh{
