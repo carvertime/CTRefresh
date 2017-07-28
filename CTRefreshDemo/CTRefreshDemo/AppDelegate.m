@@ -18,7 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UINavigationController *na = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
-    self.window.rootViewController = na;
+    UITabBarController *tabVC = [[UITabBarController alloc] init];
+    tabVC.viewControllers = @[na,na,na,na];
+    self.window.rootViewController = tabVC;
     return YES;
 }
 

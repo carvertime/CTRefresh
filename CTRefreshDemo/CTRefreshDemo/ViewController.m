@@ -60,7 +60,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-    
+    NSLog(@"contentInset Y = %lf",self.tableView.contentInset.bottom);
     
 }
 
