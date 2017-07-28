@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CTRefreshProtocol.h"
-#import "CTRefreshDefine.h"
+#import "CTRefreshKit.h"
 
 @interface CTRefreshHeaderView : UIView<CTRefreshHeaderProtocol>
 

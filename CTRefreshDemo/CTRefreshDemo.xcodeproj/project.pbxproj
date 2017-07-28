@@ -43,6 +43,7 @@
 		697ED9751F298C3E0089ADE7 /* CTRefreshLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshLogic.h; sourceTree = "<group>"; };
 		697ED9761F298C3E0089ADE7 /* CTRefreshLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTRefreshLogic.m; sourceTree = "<group>"; };
 		697ED9991F29EC6C0089ADE7 /* CTRefreshLogicProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshLogicProtocol.h; sourceTree = "<group>"; };
+		699B794A1F2B2F5C00616E7E /* CTRefreshKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTRefreshKit.h; sourceTree = "<group>"; };
 		69D40DB81F27277100C145AA /* CTRefreshDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CTRefreshDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D40DBC1F27277100C145AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		69D40DBE1F27277100C145AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -175,6 +176,7 @@
 				69D40DFB1F272EC600C145AA /* UIScrollView+CTRefresh.h */,
 				69D40DFC1F272EC600C145AA /* UIScrollView+CTRefresh.m */,
 				69D40DFE1F27404000C145AA /* CTRefreshDefine.h */,
+				699B794A1F2B2F5C00616E7E /* CTRefreshKit.h */,
 			);
 			path = CTRefresh;
 			sourceTree = "<group>";
