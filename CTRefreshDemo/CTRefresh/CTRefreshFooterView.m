@@ -18,6 +18,10 @@
     return self;
 }
 
+- (CGFloat)refreshFooterHeight{
+    return 50;
+}
+
 - (void)refreshFooterStatus:(CTFooterRefreshStatus)status{
     switch (status) {
         case CTFooterRefreshStatusNormal:

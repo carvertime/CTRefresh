@@ -13,7 +13,8 @@
 
 
 @property (nonatomic, assign) CGFloat newInsetTop;
-@property (nonatomic, assign) CGFloat refreshHeight;
+@property (nonatomic, assign) CGFloat refreshHeaderHeight;
+@property (nonatomic, assign) CGFloat refreshFooterHeight;
 
 
 @end
@@ -36,9 +37,15 @@
     }
 }
 
+- (BOOL)headerViewShouldChangeWithStatus:(CTHeaderRefreshStatus)status{
+    if (self.headerRefreshState == status) {
+        return NO;
+    }
+    return YES;
+}
+
 - (CTHeaderRefreshStatus)handleHeaderViewStatusWithOffsetY:(CGFloat)OffsetY refreshHeight:(CGFloat)height{
-    self.newOffsetY = OffsetY;
-    self.refreshHeight = height;
+    self.refreshHeaderHeight = height;
     if (-self.newOffsetY >= self.originInsetTop+height) {
         if (self.panState == CTScrollViewPanStateLoosen) {
             return CTHeaderRefreshStatusRefreshing;
@@ -50,15 +57,37 @@
     }
 }
 
-- (BOOL)headerViewShouldChangeWithStatus:(CTHeaderRefreshStatus)status{
-    if (self.headerRefreshState == status) {
+- (BOOL)footerViewShouldResponse{
+    if (self.footerRefreshState == CTFooterRefreshStatusRefreshing || self.footerRefreshState == CTFooterRefreshStatusRefreshResultFeedback || self.footerRefreshState == CTFooterRefreshStatusRefreshEnding) {
         return NO;
+    } else {
+        return YES;
     }
-    return YES;
 }
 
-- (void)handlePanStatus:(CTScrollViewPanState)status{
-    self.panState = status;
+- (BOOL)footerViewShouldChangeWithStatus:(CTFooterRefreshStatus)status{
+    if (self.footerRefreshState == status) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+- (CTFooterRefreshStatus)handleFooterViewStatusWithOffsetY:(CGFloat)OffsetY refreshHeight:(CGFloat)height{
+    self.refreshFooterHeight = height;
+    if (OffsetY + self.scrollViewHeight >= self.contentSizeHeight) {
+        if (OffsetY + self.scrollViewHeight >= self.contentSizeHeight + height) {
+            if (self.panState == CTScrollViewPanStateLoosen) {
+                return CTFooterRefreshStatusRefreshing;
+            } else {
+                return CTFooterRefreshStatusShouldRefresh;
+            }
+        } else {
+            return CTFooterRefreshStatusWillAppear;
+        }
+    } else {
+        return CTFooterRefreshStatusNormal;
+    }
 }
 
 
