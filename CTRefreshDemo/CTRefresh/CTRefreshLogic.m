@@ -51,7 +51,7 @@
 }
 
 - (BOOL)footerViewShouldResponse{
-    if (self.footerRefreshState == CTFooterRefreshStatusRefreshing || self.footerRefreshState == CTFooterRefreshStatusRefreshResultFeedback || self.footerRefreshState == CTFooterRefreshStatusRefreshEnding) {
+    if (self.footerRefreshState == CTFooterRefreshStatusRefreshing || self.footerRefreshState == CTFooterRefreshStatusRefreshEnding) {
         return NO;
     } else {
         return YES;
@@ -69,7 +69,7 @@
 - (CTFooterRefreshStatus)handleFooterViewStatusWithOffsetY:(CGFloat)OffsetY refreshHeight:(CGFloat)height{
     self.refreshFooterHeight = height;
     if (OffsetY + self.scrollViewHeight >= self.contentSizeHeight) {
-        if (OffsetY + self.scrollViewHeight >= self.contentSizeHeight + height) {
+        if (OffsetY + self.scrollViewHeight >= self.contentSizeHeight + height + self.originInsetBottom) {
             if (self.panState == CTScrollViewPanStateLoosen) {
                 return CTFooterRefreshStatusRefreshing;
             } else {
