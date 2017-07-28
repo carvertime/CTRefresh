@@ -43,10 +43,10 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
 
     if ([keyPath isEqualToString:@"contentOffset"]) {
-        [self changeStatusWithOffsetY:[change[@"new"] CGPointValue].y];
+        [self changeHeaderStatusWithOffsetY:[change[@"new"] CGPointValue].y];
     } else if ([keyPath isEqualToString:@"state"]) {
         self.logic.panState = [change[@"new"] integerValue];
-        [self changeStatusWithOffsetY:self.logic.newOffsetY];
+        [self changeHeaderStatusWithOffsetY:self.logic.newOffsetY];
     } else if ([keyPath isEqualToString:@"contentSize"]) {
         NSLog(@"contentSize = %@",change[@"new"]);
     }
@@ -54,7 +54,7 @@
 }
 
 
-- (void)changeStatusWithOffsetY:(CGFloat)offsetY{
+- (void)changeHeaderStatusWithOffsetY:(CGFloat)offsetY{
     
     if (![self.logic headerViewShouldResponse]) return;
     CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
@@ -74,6 +74,21 @@
     }
 }
 
+- (void)beginRefresh{
+    
+    CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
+    self.logic.headerRefreshState = CTHeaderRefreshStatusRefreshing;
+    [self.scrollView.ct_refreshHeader refreshHeaderStatus:self.logic.headerRefreshState];
+    [UIView animateWithDuration:0.25 animations:^{
+         [self.scrollView setContentInset:UIEdgeInsetsMake(self.logic.originInsetTop+heigth, 0, 0, 0)];
+    } completion:^(BOOL finished) {
+        if (self.headerRefreshBlock) {
+            self.headerRefreshBlock(self.scrollView.ct_refreshHeader);
+        }
+    }];
+    
+}
+
 - (void)endHeaderRefresh{
     self.logic.headerRefreshState = CTHeaderRefreshStatusRefreshResultFeedback;
     [self.scrollView.ct_refreshHeader refreshHeaderStatus:self.logic.headerRefreshState];
@@ -87,6 +102,9 @@
     });
 }
 
+- (void)endFooterRefresh{
+    
+}
 
 - (void)dealloc{
     [self.scrollView.panGestureRecognizer removeObserver:self forKeyPath:@"state"];
