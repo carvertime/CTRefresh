@@ -33,8 +33,6 @@ typedef NS_ENUM(NSInteger, CTHeaderRefreshStatus) {
 typedef NS_ENUM(NSInteger, CTFooterRefreshStatus) {
     /** footer正常状态 */
     CTFooterRefreshStatusNormal,
-    /** footer将要出现时 */
-    CTFooterRefreshStatusWillAppear,
     /** footer松开可刷新状态 */
     CTFooterRefreshStatusShouldRefresh,
     /** footer刷新中 */

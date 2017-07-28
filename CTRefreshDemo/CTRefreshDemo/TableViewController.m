@@ -9,6 +9,7 @@
 #import "TableViewController.h"
 #import "CTRefreshKit.h"
 #import "CTRefreshHeaderView.h"
+#import "CTRefreshFooterView.h"
 
 @interface TableViewController ()
 
@@ -28,6 +29,18 @@
     }];
     
     [self.tableView ct_beginRefresh];
+    
+    [self.tableView ct_addFooterRefresh:[CTRefreshFooterView class] handle:^(UIView *footerView) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.tableView ct_endFooterRefresh];
+            [self.dataSource addObject:@"data"];
+            [self.dataSource addObject:@"data"];
+            [self.dataSource addObject:@"data"];
+            [self.dataSource addObject:@"data"];
+            [self.dataSource addObject:@"data"];
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 

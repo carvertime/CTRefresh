@@ -33,7 +33,6 @@
 - (void)refreshFooterStatus:(CTFooterRefreshStatus)status{
     switch (status) {
         case CTFooterRefreshStatusNormal:
-        case CTFooterRefreshStatusWillAppear:
         {
             self.titleLb.text = @"加载更多";
             [self.indicatorView stopAnimating];

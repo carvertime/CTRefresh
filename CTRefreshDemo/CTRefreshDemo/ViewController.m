@@ -57,13 +57,6 @@
     }];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    
-    [super viewDidAppear:animated];
-    NSLog(@"contentInset Y = %lf",self.tableView.contentInset.bottom);
-    
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;

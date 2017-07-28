@@ -68,15 +68,11 @@
 
 - (CTFooterRefreshStatus)handleFooterViewStatusWithOffsetY:(CGFloat)OffsetY refreshHeight:(CGFloat)height{
     self.refreshFooterHeight = height;
-    if (OffsetY + self.scrollViewHeight >= self.contentSizeHeight) {
-        if (OffsetY + self.scrollViewHeight >= self.contentSizeHeight + height + self.originInsetBottom) {
-            if (self.panState == CTScrollViewPanStateLoosen) {
-                return CTFooterRefreshStatusRefreshing;
-            } else {
-                return CTFooterRefreshStatusShouldRefresh;
-            }
+    if (OffsetY + self.scrollViewHeight >= self.contentSizeHeight + height + self.originInsetBottom) {
+        if (self.panState == CTScrollViewPanStateLoosen) {
+            return CTFooterRefreshStatusRefreshing;
         } else {
-            return CTFooterRefreshStatusWillAppear;
+            return CTFooterRefreshStatusShouldRefresh;
         }
     } else {
         return CTFooterRefreshStatusNormal;

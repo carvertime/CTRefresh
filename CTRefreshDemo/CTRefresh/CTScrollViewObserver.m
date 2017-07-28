@@ -96,21 +96,20 @@
     if (![self.logic footerViewShouldResponse]) return;
     if (![self.logic headerViewShouldResponse]) return;
     
+    if (!self.scrollView.ct_refreshFooter.superview) {
+        [self.scrollView addSubview:self.scrollView.ct_refreshFooter];
+    }
+    
     if ([self.scrollView.ct_refreshFooter respondsToSelector:@selector(refreshFooterScrollOffsetY:)]) {
          [self.scrollView.ct_refreshFooter refreshFooterScrollOffsetY:offsetY];
     }
     CGFloat heigth = [self.scrollView.ct_refreshFooter refreshFooterHeight];
     CTFooterRefreshStatus footerRefreshStatus = [self.logic handleFooterViewStatusWithOffsetY:offsetY refreshHeight:heigth];
+    
     if ([self.logic footerViewShouldChangeWithStatus:footerRefreshStatus]) {
         self.logic.footerRefreshState = footerRefreshStatus;
         [self.scrollView.ct_refreshFooter refreshFooterStatus:footerRefreshStatus];
-        if (footerRefreshStatus == CTFooterRefreshStatusWillAppear) {
-            self.logic.originInsetBottom = self.scrollView.contentInset.bottom;
-            if (!self.scrollView.ct_refreshFooter.superview) {
-                 [self.scrollView addSubview:self.scrollView.ct_refreshFooter];
-            }
-            self.scrollView.ct_refreshFooter.frame = CGRectMake(0, self.scrollView.contentSize.height, self.scrollView.frame.size.width, heigth);
-        } else if (footerRefreshStatus == CTFooterRefreshStatusRefreshing) {
+        if (footerRefreshStatus == CTFooterRefreshStatusRefreshing) {
             [UIView animateWithDuration:0.25 animations:^{
                 [self.scrollView setContentInset:UIEdgeInsetsMake(self.logic.originInsetTop, 0, self.logic.originInsetBottom+heigth, 0)];
             } completion:^(BOOL finished) {
