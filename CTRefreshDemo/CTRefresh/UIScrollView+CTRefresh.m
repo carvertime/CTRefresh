@@ -65,10 +65,10 @@ static const char CTRefreshFooterKey;
     [self addSubview:self.ct_refreshFooter];
 }
 
-//- (void)ct_endFooterRefresh{
-//    CTScrollViewObserver *observer = objc_getAssociatedObject(self, &CTObserverKey);
-//    [observer endFooterRefresh];
-//}
+- (void)ct_endFooterRefresh{
+    CTScrollViewObserver *observer = objc_getAssociatedObject(self, &CTObserverKey);
+    [observer endFooterRefresh];
+}
 
 
 - (UIView *)ct_refreshFooter{

@@ -17,5 +17,6 @@
 - (void)beginRefresh;
 - (void)endHeaderRefresh;
 
+- (void)endFooterRefresh;
 
 @end
