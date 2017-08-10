@@ -73,6 +73,7 @@
     CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
     CTHeaderRefreshStatus headerRefreshStatus = [self.logic handleHeaderViewStatusWithOffsetY:offsetY refreshHeight:heigth];
     self.logic.originInsetTop = self.scrollView.contentInset.top;
+    NSLog(@"self.logic.originInsetTop === %lf",self.logic.originInsetTop);
     self.logic.originInsetBottom = self.scrollView.contentInset.bottom;
     
     if ([self.scrollView.ct_refreshHeader respondsToSelector:@selector(refreshHeaderScrollOffsetY:)]) {
@@ -165,6 +166,7 @@
     [self.scrollView.ct_refreshHeader refreshHeaderStatus:self.logic.headerRefreshState];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.logic.headerRefreshState = CTHeaderRefreshStatusRefreshEnding;
+        NSLog(@"self.logic.originInsetTop2 === %lf",self.logic.originInsetTop);
         [UIView animateWithDuration:0.25 animations:^{
             [self.scrollView setContentInset:UIEdgeInsetsMake(self.logic.originInsetTop, 0, self.scrollView.contentInset.bottom, 0)];
         } completion:^(BOOL finished) {
