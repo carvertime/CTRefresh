@@ -157,9 +157,11 @@
 
     self.logic.footerRefreshState = CTFooterRefreshStatusRefreshEnding;
     [self.scrollView.ct_refreshFooter refreshFooterStatus:self.logic.footerRefreshState];
-    [UIView animateWithDuration:0.25 animations:^{
-        [self.scrollView setContentInset:UIEdgeInsetsMake(self.logic.originInsetTop, 0,  self.logic.originInsetBottom, 0)];
+    CGFloat contentOffsetY = self.scrollView.contentOffset.y;
+    [UIView animateWithDuration:0.01 animations:^{
+        [self.scrollView setContentOffset:CGPointMake(0, contentOffsetY) animated:YES];
     } completion:^(BOOL finished) {
+        [self.scrollView setContentInset:UIEdgeInsetsMake(self.logic.originInsetTop, 0,  self.logic.originInsetBottom, 0)];
         self.logic.footerRefreshState = CTFooterRefreshStatusNormal;
         [self.scrollView.ct_refreshFooter refreshFooterStatus:self.logic.footerRefreshState];
     }];
