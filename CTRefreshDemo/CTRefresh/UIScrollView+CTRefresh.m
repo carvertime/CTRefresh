@@ -33,7 +33,7 @@ static const char CTRefreshFooterKey;
     
 }
 
-- (void)ct_beginRefresh{
+- (void)ct_beginHeaderRefresh{
     CTScrollViewObserver *observer = objc_getAssociatedObject(self, &CTObserverKey);
     [observer beginRefresh];
 }

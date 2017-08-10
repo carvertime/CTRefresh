@@ -28,7 +28,7 @@
 - (id)initWithScrollView:(UIScrollView *)scrollView{
     if (self = [super init]) {
         _scrollView = scrollView;
-        self.logic = [[CTRefreshLogic alloc] init];
+        self.logic = [CTRefreshLogic new];
         self.logic.panState = CTScrollViewPanStateNormal;
         [self observerScrollView:scrollView];
     }
@@ -104,6 +104,10 @@
     if (![self.logic footerViewShouldResponse]) return;
     if (![self.logic headerViewShouldResponse]) return;
     
+    if (self.scrollView.ct_refreshFooter == nil) {
+        return;
+    }
+    
     if ([self.scrollView.ct_refreshFooter respondsToSelector:@selector(refreshFooterScrollOffsetY:)]) {
         CGFloat relativeOffsetY = [self.logic calculateFooterViewRelativeOffsetYWithOffsetY:offsetY];
         [self.scrollView.ct_refreshFooter refreshFooterScrollOffsetY:[self.logic calculateFooterViewRelativeOffsetYWithOffsetY:offsetY]];
@@ -113,6 +117,7 @@
         }
     }
     
+    
     if (!self.scrollView.ct_refreshFooter.superview) {
         self.logic.footerRefreshState = CTFooterRefreshStatusNormal;
         [self.scrollView.ct_refreshFooter refreshFooterStatus:CTFooterRefreshStatusNormal];
@@ -120,7 +125,6 @@
     }
     
     CGFloat heigth = [self.scrollView.ct_refreshFooter refreshFooterHeight];
-    NSLog(@"self.scrollView.ct_refreshFooter = %@",self.scrollView.ct_refreshFooter);
     CTFooterRefreshStatus footerRefreshStatus = [self.logic handleFooterViewStatusWithOffsetY:offsetY refreshHeight:heigth];
     
     if ([self.logic footerViewShouldChangeWithStatus:footerRefreshStatus]) {

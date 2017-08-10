@@ -32,9 +32,12 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+ 
     self.titleLb.frame = CGRectMake((self.frame.size.width-100)*0.5+32, 0, 100, 50);
+    self.titleLb.textAlignment = NSTextAlignmentLeft;
     self.iconImageView.frame = CGRectMake(CGRectGetMinX(self.titleLb.frame)-32, 9, 32, 32);
     self.indicatorView.frame = self.iconImageView.frame;
+
 }
 
 - (void)refreshHeaderStatus:(CTHeaderRefreshStatus)status{
@@ -60,6 +63,8 @@
         self.titleLb.text = @"刷新成功";
         [self.indicatorView stopAnimating];
         self.iconImageView.hidden = YES;
+        self.titleLb.frame = CGRectMake((self.frame.size.width-100)*0.5, 0, 100, 50);
+        _titleLb.textAlignment = NSTextAlignmentCenter;
     } else if (status == CTHeaderRefreshStatusRefreshEnding) {
         self.titleLb.text = @"结束刷新";
         [self.indicatorView stopAnimating];
