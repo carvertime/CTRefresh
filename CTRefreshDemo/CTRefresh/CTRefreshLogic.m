@@ -11,11 +11,6 @@
 
 @interface CTRefreshLogic ()
 
-
-@property (nonatomic, assign) CGFloat newInsetTop;
-
-
-
 @end
 
 @implementation CTRefreshLogic

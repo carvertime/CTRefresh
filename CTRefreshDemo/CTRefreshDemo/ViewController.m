@@ -28,21 +28,22 @@
     self.tableView.frame = self.view.bounds;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.dataSource = @[].mutableCopy;
+    self.dataSource = @[@"data",@"data"].mutableCopy;
     [self.view addSubview:self.tableView];
     
-    self.dataSource = @[].mutableCopy;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     
-    [self.tableView ct_addHeaderRefresh:[CTRefreshHeaderView class] handle:^(UIView *headerView) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.tableView ct_endHeaderRefresh];
-            self.dataSource = @[@"data",@"data"].mutableCopy;
-            [self.tableView reloadData];
-        });
-    }];
-    
-    [self.tableView ct_beginRefresh];
+//    [self.tableView ct_addHeaderRefresh:[CTRefreshHeaderView class] handle:^(UIView *headerView) {
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self.tableView ct_endHeaderRefresh];
+//            self.dataSource = @[@"data",@"data"].mutableCopy;
+//            [self.tableView reloadData];
+//        });
+//    }];
+//    
+//    [self.tableView ct_beginRefresh];
     
     [self.tableView ct_addFooterRefresh:[CTRefreshFooterView class] handle:^(UIView *footerView) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

@@ -74,7 +74,7 @@
 }
 
 - (CGFloat)refreshFooterHeight{
-    return self.frame.size.height;
+    return 44;
 }
 
 - (void)refreshFooterScrollOffsetY:(CGFloat)offsetY{
