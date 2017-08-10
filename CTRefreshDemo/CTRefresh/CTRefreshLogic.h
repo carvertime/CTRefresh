@@ -15,21 +15,16 @@
 @property (nonatomic, assign) CTScrollViewPanState panState;
 
 
-
 @property (nonatomic, assign) CTHeaderRefreshStatus headerRefreshState;
-
 @property (nonatomic, assign) CGFloat newOffsetY;
-
 @property (nonatomic, assign) CGFloat originInsetTop;
 
 
 @property (nonatomic, assign) CTFooterRefreshStatus footerRefreshState;
-
 @property (nonatomic, assign) CGFloat originInsetBottom;
-
 @property (nonatomic, assign) CGFloat contentSizeHeight;
-
 @property (nonatomic, assign) CGFloat scrollViewHeight;
+
 
 
 @end

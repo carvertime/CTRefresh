@@ -78,7 +78,9 @@
 }
 
 - (void)refreshFooterScrollOffsetY:(CGFloat)offsetY{
-    self.alpha = (fabs(offsetY))/ self.frame.size.height;
+    if (offsetY >0) {
+       self.alpha = (offsetY)/ self.frame.size.height;
+    }
 }
 
 - (UILabel *)titleLb{
