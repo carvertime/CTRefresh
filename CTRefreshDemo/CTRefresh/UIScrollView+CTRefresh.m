@@ -29,7 +29,7 @@ static const char CTRefreshFooterKey;
     observer.headerRefreshBlock = handle;
     id headerView = [[headerClass alloc] initWithFrame:CGRectZero];
     self.ct_refreshHeader = headerView;
-    [self addSubview:self.ct_refreshHeader];
+    [self insertSubview:self.ct_refreshHeader atIndex:0];
     
 }
 

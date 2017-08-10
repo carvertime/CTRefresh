@@ -121,7 +121,7 @@
     if (!self.scrollView.ct_refreshFooter.superview) {
         self.logic.footerRefreshState = CTFooterRefreshStatusNormal;
         [self.scrollView.ct_refreshFooter refreshFooterStatus:CTFooterRefreshStatusNormal];
-        [self.scrollView addSubview:self.scrollView.ct_refreshFooter];
+        [self.scrollView insertSubview:self.scrollView.ct_refreshFooter atIndex:0];
     }
     
     CGFloat heigth = [self.scrollView.ct_refreshFooter refreshFooterHeight];
