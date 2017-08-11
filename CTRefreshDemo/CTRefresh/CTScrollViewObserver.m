@@ -192,11 +192,12 @@
  
 }
 
-- (void)dealloc{
+- (void)removeAllObserver{
     [self.scrollView.panGestureRecognizer removeObserver:self forKeyPath:@"state"];
     [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
     [self.scrollView removeObserver:self forKeyPath:@"contentSize"];
 }
+
 
 
 

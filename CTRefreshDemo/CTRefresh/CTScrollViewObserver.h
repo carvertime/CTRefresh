@@ -19,4 +19,6 @@
 
 - (void)endFooterRefresh;
 
+- (void)removeAllObserver;
+
 @end

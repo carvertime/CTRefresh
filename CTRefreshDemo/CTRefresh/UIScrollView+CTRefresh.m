@@ -78,4 +78,11 @@ static const char CTRefreshFooterKey;
     objc_setAssociatedObject(self, &CTRefreshFooterKey, ct_refreshFooter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (void)willMoveToSuperview:(UIView *)newSuperview{
+    CTScrollViewObserver *observer = objc_getAssociatedObject(self, &CTObserverKey);
+    if (!newSuperview) {
+        [observer removeAllObserver];
+    }
+}
+
 @end
