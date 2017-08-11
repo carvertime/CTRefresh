@@ -13,6 +13,8 @@
 @property (nonatomic, copy) void(^headerRefreshBlock)(UIView *headerView);
 @property (nonatomic, copy) void(^footerRefreshBlock)(UIView *footerView);
 
+@property (nonatomic, assign) BOOL test;
+
 - (id)initWithScrollView:(UIScrollView *)scrollView;
 - (void)beginRefresh;
 - (void)endHeaderRefresh;

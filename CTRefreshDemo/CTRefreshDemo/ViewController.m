@@ -55,6 +55,10 @@
 //    }];
 }
 
+- (void)viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    NSLog(@"-----viewWillLayoutSubviews scrollview inset -----------%lf",self.tableView.contentInset.top);
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataSource.count;
