@@ -21,10 +21,12 @@
 @property (nonatomic, assign) CTHeaderRefreshStatus headerRefreshState;
 @property (nonatomic, assign) CGFloat newOffsetY;
 @property (nonatomic, assign) CGFloat originInsetTop;
+@property (nonatomic, assign) CGFloat extraTop;
 
 
 @property (nonatomic, assign) CTFooterRefreshStatus footerRefreshState;
 @property (nonatomic, assign) CGFloat originInsetBottom;
+@property (nonatomic, assign) CGFloat extraBottom;
 
 
 
