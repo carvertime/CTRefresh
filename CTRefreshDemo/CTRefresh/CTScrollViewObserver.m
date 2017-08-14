@@ -185,7 +185,7 @@
     CGFloat contentOffsetY = self.scrollView.contentOffset.y;
     [UIView animateWithDuration:0.25 animations:^{
          [self.scrollView setContentInset:UIEdgeInsetsMake(self.scrollView.contentInset.top, 0,  self.scrollView.contentInset.bottom - self.logic.extraBottom, 0)];
-        [self.scrollView setContentOffset:CGPointMake(0, contentOffsetY) animated:YES];
+        [self.scrollView setContentOffset:CGPointMake(0, contentOffsetY) animated:NO];
     } completion:^(BOOL finished) {
         self.logic.footerRefreshState = CTFooterRefreshStatusNormal;
         self.logic.extraBottom = 0;
