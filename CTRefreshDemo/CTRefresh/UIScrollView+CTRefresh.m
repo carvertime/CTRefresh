@@ -81,12 +81,7 @@ static const char CTRefreshFooterKey;
 - (void)willMoveToSuperview:(UIView *)newSuperview{
     CTScrollViewObserver *observer = objc_getAssociatedObject(self, &CTObserverKey);
     if (!newSuperview) {
-        NSLog(@"-----scrollview inset -----------%lf",self.contentInset.top);
         [observer removeAllObserver];
-        
-    } else {
-          NSLog(@"-----scrollview inset -----------%lf",self.contentInset.top);
-        NSLog(@"----------------");
     }
 }
 

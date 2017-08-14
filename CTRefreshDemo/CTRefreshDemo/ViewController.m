@@ -29,7 +29,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.dataSource = @[].mutableCopy;
-    //self.dataSource = @[@"data",@"data"].mutableCopy;
     [self.view addSubview:self.tableView];
     
     
@@ -53,11 +52,6 @@
             [self.tableView reloadData];
         });
     }];
-}
-
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    NSLog(@"-----viewWillLayoutSubviews scrollview inset -----------%lf",self.tableView.contentInset.top);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

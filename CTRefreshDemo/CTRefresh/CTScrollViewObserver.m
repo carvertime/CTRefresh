@@ -67,8 +67,7 @@
 
 - (void)changeHeaderStatusWithOffsetY:(CGFloat)offsetY{
     
-    if (![self.logic headerViewShouldResponse]) return;
-    if (![self.logic footerViewShouldResponse]) return;
+    if (![self.logic headerFooterViewShouldResponse]) return;
     if (self.scrollView.ct_refreshHeader == nil) return;
     self.logic.originInsetTop = self.scrollView.contentInset.top;
     
@@ -101,8 +100,7 @@
 
 - (void)changeFooterStatusWithOffsetY:(CGFloat)offsetY{
     
-    if (![self.logic footerViewShouldResponse]) return;
-    if (![self.logic headerViewShouldResponse]) return;
+    if (![self.logic headerFooterViewShouldResponse]) return;
     if (self.scrollView.ct_refreshFooter == nil) return;
 
     self.logic.originInsetBottom = self.scrollView.contentInset.bottom;
@@ -111,7 +109,6 @@
         CGFloat relativeOffsetY = [self.logic calculateFooterViewRelativeOffsetYWithOffsetY:offsetY];
         [self.scrollView.ct_refreshFooter refreshFooterScrollOffsetY:[self.logic calculateFooterViewRelativeOffsetYWithOffsetY:offsetY]];
         if (relativeOffsetY <= 0) {
-            //[self.scrollView.ct_refreshFooter removeFromSuperview];
             return;
         }
     }

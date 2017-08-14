@@ -16,8 +16,8 @@
 @implementation CTRefreshLogic
 
 
-- (BOOL)headerViewShouldResponse{
-    if (self.headerRefreshState == CTHeaderRefreshStatusRefreshing || self.headerRefreshState == CTHeaderRefreshStatusRefreshResultFeedback || self.headerRefreshState == CTHeaderRefreshStatusRefreshEnding) {
+- (BOOL)headerFooterViewShouldResponse{
+    if (self.headerRefreshState == CTHeaderRefreshStatusRefreshing || self.headerRefreshState ==CTHeaderRefreshStatusRefreshResultFeedback || self.headerRefreshState == CTHeaderRefreshStatusRefreshEnding || self.footerRefreshState == CTFooterRefreshStatusRefreshing || self.footerRefreshState == CTFooterRefreshStatusRefreshEnding) {
         return NO;
     } else {
         return YES;
@@ -43,13 +43,6 @@
     }
 }
 
-- (BOOL)footerViewShouldResponse{
-    if (self.footerRefreshState == CTFooterRefreshStatusRefreshing || self.footerRefreshState == CTFooterRefreshStatusRefreshEnding) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
 
 - (BOOL)footerViewShouldChangeWithStatus:(CTFooterRefreshStatus)status{
     if (self.footerRefreshState == status) {
