@@ -17,7 +17,7 @@
 
 
 - (BOOL)headerFooterViewShouldResponse{
-    if (self.headerRefreshState == CTHeaderRefreshStatusRefreshing || self.headerRefreshState ==CTHeaderRefreshStatusRefreshResultFeedback || self.headerRefreshState == CTHeaderRefreshStatusRefreshEnding || self.footerRefreshState == CTFooterRefreshStatusRefreshing || self.footerRefreshState == CTFooterRefreshStatusRefreshEnding) {
+    if (self.headerRefreshState == CTHeaderRefreshStatusRefreshing || self.headerRefreshState ==CTHeaderRefreshStatusRefreshResultFeedback || self.headerRefreshState == CTHeaderRefreshStatusRefreshEnding || self.footerRefreshState == CTFooterRefreshStatusRefreshing) {
         return NO;
     } else {
         return YES;

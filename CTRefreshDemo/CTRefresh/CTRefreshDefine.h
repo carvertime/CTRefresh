@@ -37,7 +37,5 @@ typedef NS_ENUM(NSInteger, CTFooterRefreshStatus) {
     CTFooterRefreshStatusShouldRefresh,
     /** footer刷新中 */
     CTFooterRefreshStatusRefreshing,
-    /** footer结束刷新中*/
-    CTFooterRefreshStatusRefreshEnding,
 };
 

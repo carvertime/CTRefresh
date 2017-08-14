@@ -60,13 +60,6 @@
             self.iconImageView.hidden = YES;
         }
             break;
-        case CTFooterRefreshStatusRefreshEnding:
-        {
-            self.titleLb.text = @"结束刷新";
-            [self.indicatorView stopAnimating];
-            self.iconImageView.hidden = YES;
-        }
-            break;
             
         default:
             break;
