@@ -34,11 +34,13 @@
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     
+    __weak typeof(self) weakSelf = self;
+    
     [self.tableView ct_addHeaderRefresh:[CTRefreshHeaderView class] handle:^(UIView *headerView) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.tableView ct_endHeaderRefresh];
-            self.dataSource = @[@"data",@"data"].mutableCopy;
-            [self.tableView reloadData];
+            [weakSelf.tableView ct_endHeaderRefresh];
+            weakSelf.dataSource = @[@"data",@"data"].mutableCopy;
+            [weakSelf.tableView reloadData];
         });
     }];
     

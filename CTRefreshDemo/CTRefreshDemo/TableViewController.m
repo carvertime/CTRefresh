@@ -22,27 +22,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    
+    __weak typeof(self) weakSelf = self;
     [self.tableView ct_addHeaderRefresh:[CTRefreshHeaderView class] handle:^(UIView *headerView) {
-        self.dataSource = @[@"data",@"data",@"data",@"data",@"data",@"data",@"data",@"data",@"data",@"data",@"data"].mutableCopy;
-        [self.tableView ct_endHeaderRefresh];
-        [self.tableView reloadData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            weakSelf.dataSource = @[@"data",@"data",@"data",@"data",@"data",@"data",@"data",@"data",@"data",@"data",@"data"].mutableCopy;
+            [weakSelf.tableView ct_endHeaderRefresh];
+            [weakSelf.tableView reloadData];
+        });
+        
     }];
     
     [self.tableView ct_beginHeaderRefresh];
     
     [self.tableView ct_addFooterRefresh:[CTRefreshFooterView class] handle:^(UIView *footerView) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.tableView ct_endFooterRefresh];
-            [self.dataSource addObject:@"data"];
-            [self.dataSource addObject:@"data"];
-            [self.dataSource addObject:@"data"];
-            [self.dataSource addObject:@"data"];
-            [self.dataSource addObject:@"data"];
-            [self.tableView reloadData];
+            [weakSelf.tableView ct_endFooterRefresh];
+            [weakSelf.dataSource addObject:@"data"];
+            [weakSelf.dataSource addObject:@"data"];
+            [weakSelf.dataSource addObject:@"data"];
+            [weakSelf.dataSource addObject:@"data"];
+            [weakSelf.dataSource addObject:@"data"];
+            [weakSelf.tableView reloadData];
         });
     }];
 }
 
+- (void)dealloc{
+    NSLog(@" %@ dealloc ", [self class]);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
