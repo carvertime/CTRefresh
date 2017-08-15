@@ -11,6 +11,8 @@
 
 @protocol CTRefreshLogicProtocol <NSObject>
 
+
+@required
 - (BOOL)headerFooterViewShouldResponse;
 
 - (BOOL)headerViewShouldChangeWithStatus:(CTHeaderRefreshStatus)status;
@@ -20,6 +22,17 @@
 - (CTFooterRefreshStatus)handleFooterViewStatusWithOffsetY:(CGFloat)OffsetY refreshHeight:(CGFloat)refreshHeight;
 - (CGFloat)calculateFooterViewRelativeOffsetYWithOffsetY:(CGFloat)OffsetY;
 
+- (void)changeFooterViewFrame;
+
+- (void)changeHeaderStatusWithOffsetY:(CGFloat)offsetY;
+
+- (void)changeFooterStatusWithOffsetY:(CGFloat)offsetY;
+
+- (void)beginRefresh;
+
+- (void)endHeaderRefresh;
+
+- (void)endFooterRefresh;
 
 @end
 

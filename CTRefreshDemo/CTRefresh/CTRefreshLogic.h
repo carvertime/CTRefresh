@@ -10,26 +10,18 @@
 #import "CTRefreshDefine.h"
 #import "CTRefreshLogicProtocol.h"
 
+
+@protocol CTRefreshLogicDelegateProtocol <NSObject>
+
+- (void)loadData:(CTRefreshType)type;
+
+@end
+
 @interface CTRefreshLogic : NSObject<CTRefreshLogicProtocol>
 
+@property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, assign) CTScrollViewPanState panState;
-
-@property (nonatomic, assign) CGFloat scrollViewHeight;
-@property (nonatomic, assign) CGFloat contentSizeHeight;
-
-
-@property (nonatomic, assign) CTHeaderRefreshStatus headerRefreshState;
+@property (nonatomic, weak) id<CTRefreshLogicDelegateProtocol>delegate;
 @property (nonatomic, assign) CGFloat newOffsetY;
-@property (nonatomic, assign) CGFloat originInsetTop;
-@property (nonatomic, assign) CGFloat extraTop;
-
-
-@property (nonatomic, assign) CTFooterRefreshStatus footerRefreshState;
-@property (nonatomic, assign) CGFloat originInsetBottom;
-@property (nonatomic, assign) CGFloat extraBottom;
-
-
-
-
 
 @end

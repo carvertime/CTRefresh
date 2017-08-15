@@ -62,6 +62,10 @@ static const char CTRefreshFooterKey;
     observer.footerRefreshBlock = handle;
     id footerView = [[footerClass alloc] initWithFrame:CGRectZero];
     self.ct_refreshFooter = footerView;
+    self.ct_refreshFooter.hidden = YES;
+    [observer initFooterStatus];
+    [self insertSubview:self.ct_refreshFooter atIndex:0];
+    
 }
 
 - (void)ct_endFooterRefresh{

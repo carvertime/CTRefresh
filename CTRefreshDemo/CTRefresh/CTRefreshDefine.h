@@ -6,6 +6,11 @@
 //  Copyright © 2017年 Demo. All rights reserved.
 //
 
+typedef NS_ENUM(NSInteger, CTRefreshType) {
+    CTRefreshHeaderType,
+    CTRefreshFooterType,
+};
+
 typedef NS_ENUM(NSInteger, CTScrollViewPanState) {
     /** 无手势状态 */
     CTScrollViewPanStateNormal,

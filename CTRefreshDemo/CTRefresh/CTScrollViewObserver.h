@@ -16,11 +16,12 @@
 @property (nonatomic, assign) BOOL test;
 
 - (id)initWithScrollView:(UIScrollView *)scrollView;
+
 - (void)beginRefresh;
 - (void)endHeaderRefresh;
 
+- (void)initFooterStatus;
 - (void)endFooterRefresh;
-
 - (void)removeAllObserver;
 
 @end
