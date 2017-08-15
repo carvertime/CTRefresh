@@ -145,18 +145,20 @@
     CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
     self.headerRefreshState = CTHeaderRefreshStatusRefreshing;
     [self.scrollView.ct_refreshHeader refreshHeaderStatus:self.headerRefreshState];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.25 animations:^{
+            CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
+            self.extraTop = heigth;
+            [self.scrollView setContentInset:UIEdgeInsetsMake(self.originInsetTop+self.extraTop, 0, self.scrollView.contentInset.bottom, 0)];
+        } completion:^(BOOL finished) {
+            self.originInsetTop = self.scrollView.contentInset.top-heigth;
+            self.originInsetBottom = self.scrollView.contentInset.bottom;
+            if ([self.delegate respondsToSelector:@selector(loadData:)]) {
+                [self.delegate loadData:CTRefreshHeaderType];
+            }
+        }];
+    });
     
-    [UIView animateWithDuration:0.25 animations:^{
-        CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
-        self.extraTop = heigth;
-        [self.scrollView setContentInset:UIEdgeInsetsMake(self.originInsetTop+self.extraTop, 0, self.scrollView.contentInset.bottom, 0)];
-    } completion:^(BOOL finished) {
-        self.originInsetTop = self.scrollView.contentInset.top-heigth;
-        self.originInsetBottom = self.scrollView.contentInset.bottom;
-        if ([self.delegate respondsToSelector:@selector(loadData:)]) {
-            [self.delegate loadData:CTRefreshHeaderType];
-        }
-    }];
 }
 
 - (void)endHeaderRefresh{
@@ -210,13 +212,16 @@
         if (footerRefreshStatus == CTFooterRefreshStatusRefreshing) {
             self.extraBottom = height;
             self.scrollView.ct_refreshFooter.hidden = NO;
-            [UIView animateWithDuration:0.25 animations:^{
-                [self.scrollView setContentInset:UIEdgeInsetsMake(self.scrollView.contentInset.top, 0, self.originInsetBottom + self.extraBottom, 0)];
-            } completion:^(BOOL finished) {
-                if ([self.delegate respondsToSelector:@selector(loadData:)]) {
-                    [self.delegate loadData:CTRefreshFooterType];
-                }
-            }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.25 animations:^{
+                    [self.scrollView setContentInset:UIEdgeInsetsMake(self.scrollView.contentInset.top, 0, self.originInsetBottom + self.extraBottom, 0)];
+                } completion:^(BOOL finished) {
+                    if ([self.delegate respondsToSelector:@selector(loadData:)]) {
+                        [self.delegate loadData:CTRefreshFooterType];
+                    }
+                }];
+            });
+            
         }
         self.footerRefreshState = footerRefreshStatus;
         [self.scrollView.ct_refreshFooter refreshFooterStatus:footerRefreshStatus];

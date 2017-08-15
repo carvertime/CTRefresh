@@ -66,15 +66,17 @@
 #pragma mark - CTRefreshLogicDelegateProtocol
 
 - (void)loadData:(CTRefreshType)type{
-    if (type == CTRefreshHeaderType) {
-        if (self.headerRefreshBlock) {
-            self.headerRefreshBlock(self.logic.scrollView.ct_refreshHeader);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (type == CTRefreshHeaderType) {
+            if (self.headerRefreshBlock) {
+                self.headerRefreshBlock(self.logic.scrollView.ct_refreshHeader);
+            }
+        } else {
+            if (self.footerRefreshBlock) {
+                self.footerRefreshBlock(self.logic.scrollView.ct_refreshHeader);
+            }
         }
-    } else {
-        if (self.footerRefreshBlock) {
-            self.footerRefreshBlock(self.logic.scrollView.ct_refreshHeader);
-        }
-    }
+    });
 }
 
 - (void)beginRefresh{
