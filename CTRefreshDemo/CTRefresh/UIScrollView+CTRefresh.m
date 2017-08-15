@@ -29,6 +29,7 @@ static const char CTRefreshFooterKey;
     observer.headerRefreshBlock = handle;
     id headerView = [[headerClass alloc] initWithFrame:CGRectZero];
     self.ct_refreshHeader = headerView;
+    self.ct_refreshHeader.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [self insertSubview:self.ct_refreshHeader atIndex:0];
     
 }
@@ -63,6 +64,7 @@ static const char CTRefreshFooterKey;
     id footerView = [[footerClass alloc] initWithFrame:CGRectZero];
     self.ct_refreshFooter = footerView;
     self.ct_refreshFooter.hidden = YES;
+    self.ct_refreshFooter.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [observer initFooterStatus];
     [self insertSubview:self.ct_refreshFooter atIndex:0];
     
