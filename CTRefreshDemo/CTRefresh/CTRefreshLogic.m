@@ -188,7 +188,6 @@
     CGFloat height = [self.scrollView.ct_refreshFooter refreshFooterHeight];
     
     CTFooterRefreshStatus footerRefreshStatus = [self handleFooterViewStatusWithOffsetY:offsetY refreshHeight:height];
-    NSLog(@"\nself.relativeOffsetBottom == %lf",self.relativeOffsetBottom);
     if (self.relativeOffsetBottom < 0) {
         self.scrollView.ct_refreshFooter.hidden = YES;
         return;
