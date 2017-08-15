@@ -16,10 +16,13 @@
 - (BOOL)headerFooterViewShouldResponse;
 
 - (BOOL)headerViewShouldChangeWithStatus:(CTHeaderRefreshStatus)status;
+
 - (CTHeaderRefreshStatus)handleHeaderViewStatusWithOffsetY:(CGFloat)OffsetY refreshHeight:(CGFloat)refreshHeight;
 
 - (BOOL)footerViewShouldChangeWithStatus:(CTFooterRefreshStatus)status;
+
 - (CTFooterRefreshStatus)handleFooterViewStatusWithOffsetY:(CGFloat)OffsetY refreshHeight:(CGFloat)refreshHeight;
+
 - (CGFloat)calculateFooterViewRelativeOffsetYWithOffsetY:(CGFloat)OffsetY;
 
 - (void)changeFooterViewFrame;
