@@ -141,6 +141,9 @@
 
 - (void)beginRefresh{
     
+    if (![self headerFooterViewShouldResponse]) return;
+    if (self.scrollView.ct_refreshHeader == nil) return;
+    
     CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
     self.headerRefreshState = CTHeaderRefreshStatusRefreshing;
     [self.scrollView.ct_refreshHeader refreshHeaderStatus:self.headerRefreshState];
