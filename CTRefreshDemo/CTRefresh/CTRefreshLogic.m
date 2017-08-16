@@ -12,9 +12,6 @@
 
 @interface CTRefreshLogic ()
 
-@property (nonatomic, assign) CGFloat scrollViewHeight;
-@property (nonatomic, assign) CGFloat contentSizeHeight;
-
 @property (nonatomic, assign) CTHeaderRefreshStatus headerRefreshState;
 @property (nonatomic, assign) CGFloat originInsetTop;
 @property (nonatomic, assign) CGFloat extraTop;
@@ -29,8 +26,6 @@
 @implementation CTRefreshLogic
 
 - (void)changeHeaderFooterViewFrame{
-    self.contentSizeHeight = self.scrollView.contentSize.height;
-    self.scrollViewHeight = self.scrollView.frame.size.height;
     CGFloat footerHeigth = [self.scrollView.ct_refreshFooter refreshFooterHeight];
     CGFloat headerHeigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
     self.scrollView.ct_refreshFooter.frame = CGRectMake(0, self.scrollView.contentSize.height, self.scrollView.frame.size.width, footerHeigth);
@@ -74,8 +69,9 @@
 }
 
 - (CGFloat)calculateFooterViewRelativeOffsetYWithOffsetY:(CGFloat)OffsetY{
-    if (self.contentSizeHeight >= self.scrollViewHeight - self.originInsetTop - self.originInsetBottom) {
-        return OffsetY + self.scrollViewHeight - self.contentSizeHeight - self.originInsetBottom;
+    CGFloat scrollViewH = self.scrollView.frame.size.height;
+    if (scrollViewH >= scrollViewH - self.originInsetTop - self.originInsetBottom) {
+        return OffsetY + scrollViewH - scrollViewH - self.originInsetBottom;
     } else {
         return self.originInsetTop + OffsetY;
     }
@@ -84,8 +80,9 @@
 - (CTFooterRefreshStatus)handleFooterViewStatusWithOffsetY:(CGFloat)OffsetY refreshHeight:(CGFloat)height{
     
     self.relativeOffsetBottom = [self calculateFooterViewRelativeOffsetYWithOffsetY:OffsetY];
-    if (self.contentSizeHeight >= self.scrollViewHeight - self.originInsetTop - self.originInsetBottom) {
-        if (OffsetY + self.scrollViewHeight >= self.contentSizeHeight + height + self.originInsetBottom) {
+    CGFloat scrollViewH = self.scrollView.frame.size.height;
+    if (scrollViewH >= scrollViewH - self.originInsetTop - self.originInsetBottom) {
+        if (OffsetY + scrollViewH >= scrollViewH + height + self.originInsetBottom) {
             if (self.panState == CTScrollViewPanStateLoosen) {
                 return CTFooterRefreshStatusRefreshing;
             } else {
