@@ -68,4 +68,20 @@ CTRefresh 是一个简单的上拉刷新下拉加载控件
     return _titleLb;
 }
 
+#pragma mark - ViewController中添加刷新功能
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    __weak typeof(self) weakSelf = self;
+    [self.tableView ct_addHeaderRefresh:[CTRefreshHeaderView class] handle:^(UIView *headerView) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.tableView ct_endHeaderRefresh];
+            weakSelf.dataSource = @[@"data",@"data"].mutableCopy;
+            [weakSelf.tableView reloadData];
+        });
+    }];
+    [self.tableView ct_beginHeaderRefresh];
+ }
+
 ```
