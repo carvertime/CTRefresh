@@ -70,8 +70,9 @@
 
 - (CGFloat)calculateFooterViewRelativeOffsetYWithOffsetY:(CGFloat)OffsetY{
     CGFloat scrollViewH = self.scrollView.frame.size.height;
-    if (scrollViewH >= scrollViewH - self.originInsetTop - self.originInsetBottom) {
-        return OffsetY + scrollViewH - scrollViewH - self.originInsetBottom;
+    CGFloat contentH = self.scrollView.contentSize.height;
+    if (contentH >= scrollViewH - self.originInsetTop - self.originInsetBottom) {
+        return OffsetY + scrollViewH - contentH - self.originInsetBottom;
     } else {
         return self.originInsetTop + OffsetY;
     }
@@ -81,8 +82,9 @@
     
     self.relativeOffsetBottom = [self calculateFooterViewRelativeOffsetYWithOffsetY:OffsetY];
     CGFloat scrollViewH = self.scrollView.frame.size.height;
-    if (scrollViewH >= scrollViewH - self.originInsetTop - self.originInsetBottom) {
-        if (OffsetY + scrollViewH >= scrollViewH + height + self.originInsetBottom) {
+    CGFloat contentH = self.scrollView.contentSize.height;
+    if (contentH >= scrollViewH - self.originInsetTop - self.originInsetBottom) {
+        if (OffsetY + scrollViewH >= contentH + height + self.originInsetBottom) {
             if (self.panState == CTScrollViewPanStateLoosen) {
                 return CTFooterRefreshStatusRefreshing;
             } else {
@@ -125,6 +127,7 @@
             self.extraTop = heigth;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [UIView animateWithDuration:0.25 animations:^{
+                    [self.scrollView setContentOffset:CGPointMake(0, -self.scrollView.contentInset.top-self.extraTop) animated:NO];
                     [self.scrollView setContentInset:UIEdgeInsetsMake(self.scrollView.contentInset.top+self.extraTop, 0, self.scrollView.contentInset.bottom, 0)];
                 } completion:^(BOOL finished) {
                     if ([self.delegate respondsToSelector:@selector(loadData:)]) {
@@ -153,6 +156,7 @@
             self.scrollView.ct_refreshHeader.alpha = 1;
             CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
             self.extraTop = heigth;
+            [self.scrollView setContentOffset:CGPointMake(0, -self.scrollView.contentInset.top-self.extraTop) animated:NO];
             [self.scrollView setContentInset:UIEdgeInsetsMake(self.scrollView.contentInset.top+self.extraTop, 0, self.scrollView.contentInset.bottom, 0)];
         } completion:^(BOOL finished) {
             self.originInsetTop = self.scrollView.contentInset.top-heigth;
@@ -238,8 +242,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         CGFloat contentOffsetY = self.scrollView.contentOffset.y;
         [UIView animateWithDuration:0.25 animations:^{
-            [self.scrollView setContentInset:UIEdgeInsetsMake(self.scrollView.contentInset.top, 0,  self.scrollView.contentInset.bottom - self.extraBottom, 0)];
             [self.scrollView setContentOffset:CGPointMake(0, contentOffsetY) animated:NO];
+            [self.scrollView setContentInset:UIEdgeInsetsMake(self.scrollView.contentInset.top, 0,  self.scrollView.contentInset.bottom - self.extraBottom, 0)];
         } completion:^(BOOL finished) {
             self.scrollView.ct_refreshFooter.hidden = YES;
             self.extraBottom = 0;
