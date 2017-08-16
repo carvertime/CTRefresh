@@ -14,7 +14,7 @@
 
 @required
 
-- (void)changeFooterViewFrame;
+- (void)changeHeaderFooterViewFrame;
 
 - (void)changeHeaderStatusWithOffsetY:(CGFloat)offsetY;
 

@@ -54,7 +54,7 @@
         [self.logic changeHeaderStatusWithOffsetY:self.logic.newOffsetY];
         [self.logic changeFooterStatusWithOffsetY:self.logic.newOffsetY];
     } else if ([keyPath isEqualToString:@"contentSize"]) {
-        [self.logic changeFooterViewFrame];
+        [self.logic changeHeaderFooterViewFrame];
     }
 
 }

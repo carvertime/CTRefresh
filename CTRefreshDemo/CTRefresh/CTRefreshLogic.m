@@ -28,11 +28,13 @@
 
 @implementation CTRefreshLogic
 
-- (void)changeFooterViewFrame{
+- (void)changeHeaderFooterViewFrame{
     self.contentSizeHeight = self.scrollView.contentSize.height;
     self.scrollViewHeight = self.scrollView.frame.size.height;
-    CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
-    self.scrollView.ct_refreshFooter.frame = CGRectMake(0, self.scrollView.contentSize.height, self.scrollView.frame.size.width, heigth);
+    CGFloat footerHeigth = [self.scrollView.ct_refreshFooter refreshFooterHeight];
+    CGFloat headerHeigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
+    self.scrollView.ct_refreshFooter.frame = CGRectMake(0, self.scrollView.contentSize.height, self.scrollView.frame.size.width, footerHeigth);
+    self.scrollView.ct_refreshHeader.frame = CGRectMake(0, -headerHeigth, self.scrollView.frame.size.width, headerHeigth);
 }
 
 - (BOOL)headerFooterViewShouldResponse{
@@ -145,8 +147,10 @@
     CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
     self.headerRefreshState = CTHeaderRefreshStatusRefreshing;
     [self.scrollView.ct_refreshHeader refreshHeaderStatus:self.headerRefreshState];
+    self.scrollView.ct_refreshHeader.alpha = 0;
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.25 animations:^{
+            self.scrollView.ct_refreshHeader.alpha = 1;
             CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
             self.extraTop = heigth;
             [self.scrollView setContentInset:UIEdgeInsetsMake(self.scrollView.contentInset.top+self.extraTop, 0, self.scrollView.contentInset.bottom, 0)];
