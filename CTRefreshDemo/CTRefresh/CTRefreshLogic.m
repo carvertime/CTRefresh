@@ -149,7 +149,7 @@
         [UIView animateWithDuration:0.25 animations:^{
             CGFloat heigth = [self.scrollView.ct_refreshHeader refreshHeaderHeight];
             self.extraTop = heigth;
-            [self.scrollView setContentInset:UIEdgeInsetsMake(self.originInsetTop+self.extraTop, 0, self.scrollView.contentInset.bottom, 0)];
+            [self.scrollView setContentInset:UIEdgeInsetsMake(self.scrollView.contentInset.top+self.extraTop, 0, self.scrollView.contentInset.bottom, 0)];
         } completion:^(BOOL finished) {
             self.originInsetTop = self.scrollView.contentInset.top-heigth;
             self.originInsetBottom = self.scrollView.contentInset.bottom;

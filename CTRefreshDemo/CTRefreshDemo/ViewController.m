@@ -15,6 +15,7 @@
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *menuView;
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
 @end
@@ -25,12 +26,15 @@
     [super viewDidLoad];
     
 
-    self.tableView.frame = self.view.bounds;
+    self.tableView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.dataSource = @[].mutableCopy;
+    self.dataSource = @[@"data1",@"data2"].mutableCopy;
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.menuView];
     
+    self.menuView.frame = CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 44);
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     
@@ -87,6 +91,14 @@
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     }
     return _tableView;
+}
+
+- (UIView *)menuView{
+    if (_menuView == nil) {
+        _menuView = [[UIView alloc] initWithFrame:CGRectZero];
+        _menuView.backgroundColor = [UIColor grayColor];
+    }
+    return _menuView;
 }
 
 
