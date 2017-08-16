@@ -20,7 +20,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.frame = CGRectMake(0, -50, [UIScreen mainScreen].bounds.size.width, 50);
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
         [self addSubview:self.titleLb];
@@ -73,7 +72,7 @@
 }
 
 - (CGFloat)refreshHeaderHeight{
-    return self.frame.size.height;
+    return 50;
 }
 
 - (void)refreshHeaderScrollOffsetY:(CGFloat)offsetY{
