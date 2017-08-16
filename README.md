@@ -143,4 +143,20 @@ CTRefresh 是一个简单的上拉刷新下拉加载控件
 
 @end
 
+#pragma mark - ViewController中添加上拉加载更多功能
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    __weak typeof(self) weakSelf = self;
+   [self.tableView ct_addFooterRefresh:[CTRefreshFooterView class] handle:^(UIView *footerView) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf.tableView ct_endFooterRefresh];
+            [weakSelf.dataSource addObject:@"data"];
+            [weakSelf.dataSource addObject:@"data"];
+            [weakSelf.tableView reloadData];
+        });
+    }];
+ }
+
 ```
