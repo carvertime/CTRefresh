@@ -9,7 +9,7 @@ CTRefresh 是一个简单的上拉刷新下拉加载控件
 
 ```objc
 
-#pragma mark - 新建一个下拉刷新View
+#pragma mark - 新建一个下拉刷新CTRefreshHeaderView
 
 @interface CTRefreshHeaderView : UIView<CTRefreshHeaderProtocol>
 
@@ -83,5 +83,64 @@ CTRefresh 是一个简单的上拉刷新下拉加载控件
     }];
     [self.tableView ct_beginHeaderRefresh];
  }
+
+```
+### 上拉加载更多
+
+```objc
+#pragma mark - 新建一个上拉加载更多CTRefreshFooterView
+
+@interface CTRefreshFooterView : UIView<CTRefreshFooterProtocol>
+
+@property (nonatomic, strong) UILabel *titleLb;
+
+@end
+
+@implementation CTRefreshFooterView
+
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1];
+        [self addSubview:self.titleLb];
+    }
+    return self;
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    self.titleLb.frame = self.bounds;
+}
+
+- (void)refreshFooterStatus:(CTFooterRefreshStatus)status{
+     switch (status) {
+            case CTFooterRefreshStatusNormal:
+                self.titleLb.text = @"上拉可加载更多";
+                break;
+            case CTFooterRefreshStatusShouldRefresh:
+                self.titleLb.text = @"松开开始刷新";
+                break;
+            case CTFooterRefreshStatusRefreshing:
+                self.titleLb.text = @"加载中...";
+                break;
+            default:
+                break;
+    }
+}
+
+- (CGFloat)refreshFooterHeight{
+    return 44;
+}
+
+- (UILabel *)titleLb{
+    if (_titleLb == nil) {
+        _titleLb = [[UILabel alloc] initWithFrame:CGRectZero];
+        _titleLb.textAlignment = NSTextAlignmentCenter;
+        _titleLb.textColor = [UIColor colorWithRed:117/255.0 green:117/255.0 blue:117/255.0 alpha:1];
+        _titleLb.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    }
+    return _titleLb;
+}
+
+@end
 
 ```
